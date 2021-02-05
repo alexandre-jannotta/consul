@@ -4,6 +4,8 @@ volumes:
   server-1-data:
   server-2-data:
   server-3-data:
+  server-4-data:
+  server-5-data:
   client-1-data:
   client-2-data:
 
@@ -88,3 +90,35 @@ services:
       - ./config/client-2:/consul/config
       - ./config/client.sh:/consul/client.sh:ro
     command: /consul/client.sh
+
+  server-4:
+    depends_on:
+      - server-3
+    image: consul:latest
+    volumes:
+      - server-4-data:/consul/data
+      - ./config/certs:/consul/certs:ro
+      - ./config/server-4:/consul/config:ro
+      - ./config/server.sh:/consul/server.sh:ro
+    command: /consul/server.sh seclin
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:8500" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  server-5:
+    depends_on:
+      - server-4
+    image: consul:latest
+    volumes:
+      - server-5-data:/consul/data
+      - ./config/certs:/consul/certs:ro
+      - ./config/server-5:/consul/config:ro
+      - ./config/server.sh:/consul/server.sh:ro
+    command: /consul/server.sh seclin
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:8500" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
