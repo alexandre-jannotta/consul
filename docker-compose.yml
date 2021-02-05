@@ -1,0 +1,90 @@
+version: '3'
+
+volumes:
+  server-1-data:
+  server-2-data:
+  server-3-data:
+  client-1-data:
+  client-2-data:
+
+services:
+
+  server-1:
+    image: consul:latest
+    volumes:
+      - server-1-data:/consul/data
+      - ./config/certs:/consul/certs:ro
+      - ./config/server-1:/consul/config:ro
+      - ./config/server.sh:/consul/server.sh:ro
+    command: /consul/server.sh
+    ports:
+      - 8500:8500
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:8500" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  server-2:
+    depends_on:
+      - server-1
+    image: consul:latest
+    volumes:
+      - server-2-data:/consul/data
+      - ./config/certs:/consul/certs:ro
+      - ./config/server-2:/consul/config:ro
+      - ./config/server.sh:/consul/server.sh:ro
+    command: /consul/server.sh
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:8500" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  server-3:
+    depends_on:
+      - server-2
+    image: consul:latest
+    volumes:
+      - server-3-data:/consul/data
+      - ./config/certs:/consul/certs:ro
+      - ./config/server-3:/consul/config:ro
+      - ./config/server.sh:/consul/server.sh:ro
+    command: /consul/server.sh
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:8500" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  server-config:
+    depends_on:
+      - server-1
+      - server-2
+      - server-3
+    image: consul:latest
+    volumes:
+      - ./config/config.sh:/consul/config.sh:ro
+    command: /consul/config.sh
+
+  client-1:
+    depends_on:
+      - server-config
+    image: consul:latest
+    volumes:
+      - client-1-data:/consul/data
+      - ./config/certs:/consul/certs
+      - ./config/client-1:/consul/config
+      - ./config/client.sh:/consul/client.sh:ro
+    command: /consul/client.sh
+
+  client-2:
+    depends_on:
+      - server-config
+    image: consul:latest
+    volumes:
+      - client-2-data:/consul/data
+      - ./config/certs:/consul/certs
+      - ./config/client-2:/consul/config
+      - ./config/client.sh:/consul/client.sh:ro
+    command: /consul/client.sh

@@ -1,0 +1,27 @@
+{
+	"server": true,
+	"datacenter": "paris",
+	"node_name": "client-2",
+	"node_meta": {
+		"app": "client-2"
+	},
+	"bind_addr": "{{ GetInterfaceIP \"eth0\" }}",
+	"acl": {
+		"tokens": {
+			"default": "6a414ac2-850f-7921-2ba2-141ee456f966"
+		}
+	},
+	"encrypt": "lL0HdEPQXKEjIMWsm4ooSzxLJRSMRIOu2FXf5hUtJwM=",
+	"verify_incoming": false,
+	"verify_outgoing": true,
+	"verify_server_hostname": true,
+	"ca_file": "/consul/certs/consul-agent-ca.pem",
+	"auto_encrypt": {
+		"allow_tls": true
+	},
+	"retry_join": [
+		"server-1",
+		"server-2",
+		"server-3"
+	]
+}
