@@ -16,7 +16,7 @@ services:
       - ./config/certs:/consul/certs:ro
       - ./config/server-1:/consul/config:ro
       - ./config/server.sh:/consul/server.sh:ro
-    command: /consul/server.sh
+    command: /consul/server.sh paris
     ports:
       - 8500:8500
     healthcheck:
@@ -34,7 +34,7 @@ services:
       - ./config/certs:/consul/certs:ro
       - ./config/server-2:/consul/config:ro
       - ./config/server.sh:/consul/server.sh:ro
-    command: /consul/server.sh
+    command: /consul/server.sh paris
     healthcheck:
       test: [ "CMD", "curl", "http://localhost:8500" ]
       interval: 5s
@@ -50,7 +50,7 @@ services:
       - ./config/certs:/consul/certs:ro
       - ./config/server-3:/consul/config:ro
       - ./config/server.sh:/consul/server.sh:ro
-    command: /consul/server.sh
+    command: /consul/server.sh paris
     healthcheck:
       test: [ "CMD", "curl", "http://localhost:8500" ]
       interval: 5s
