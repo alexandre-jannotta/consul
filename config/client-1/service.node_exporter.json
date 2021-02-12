@@ -1,0 +1,19 @@
+{
+    "service": {
+        "id": "node-exporter",
+        "name": "node-exporter",
+        "address": "node-exporter",
+        "tags": [
+            "monitoring"
+        ],
+        "port": 9100,
+        "checks": [
+            {
+                "http": "http://node-exporter:9100/",
+                "tls_skip_verify": true,
+                "interval": "10s",
+                "timeout": "1s"
+            }
+        ]
+    }
+}

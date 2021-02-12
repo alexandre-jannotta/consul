@@ -5,7 +5,11 @@ consul acl policy create \
     -name 'client' \
     -rules 'node_prefix "client-" {
   policy = "write"
-}'
+}
+service_prefix "" {
+  policy = "write"
+}
+'
 
 consul acl token create \
     -http-addr 'http://server-1:8500' \

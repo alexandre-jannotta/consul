@@ -4,6 +4,7 @@
 	"node_meta": {
 		"app": "client-1"
 	},
+	"client_addr": "0.0.0.0",
 	"bind_addr": "{{ GetInterfaceIP \"eth0\" }}",
 	"acl": {
 		"tokens": {

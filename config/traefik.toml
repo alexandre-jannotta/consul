@@ -1,0 +1,26 @@
+[global]
+  checkNewVersion = true
+  sendAnonymousUsage = false
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.websecure]
+    address = ":443"
+
+[ping]
+  entryPoint = "web"
+
+[log]
+  # level = "DEBUG"
+  # format = "json"
+
+[api]
+  insecure = true
+  # dashboard = false
+
+[providers.consulCatalog]
+  prefix = "traefik"
+  exposedByDefault = false
+  [providers.consulCatalog.endpoint]
+    address = "client-1:8500"

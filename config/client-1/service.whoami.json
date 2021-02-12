@@ -1,0 +1,22 @@
+{
+    "service": {
+        "id": "whoami",
+        "name": "whoami",
+        "address": "whoami",
+        "tags": [
+            "traefik.enable=true",
+            "traefik.http.routers.whoami.rule=PathPrefix(`/whoami`)",
+            "traefik.http.routers.whoami.middlewares=whoami",
+            "traefik.http.middlewares.whoami.stripprefix.prefixes=/whoami"
+        ],
+        "port": 8081,
+        "checks": [
+            {
+                "http": "http://whoami:8081/health",
+                "tls_skip_verify": true,
+                "interval": "10s",
+                "timeout": "1s"
+            }
+        ]
+    }
+}

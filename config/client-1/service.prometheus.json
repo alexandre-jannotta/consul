@@ -1,0 +1,24 @@
+{
+    "service": {
+        "id": "prometheus",
+        "name": "prometheus",
+        "address": "prometheus",
+        "tags": [
+            "monitoring",
+            "traefik.enable=true",
+            "traefik.http.routers.prometheus.rule=PathPrefix(`/prometheus`)"
+        ],
+        "meta": {
+            "path": "/prometheus/metrics"
+        },
+        "port": 9090,
+        "checks": [
+            {
+                "http": "http://prometheus:9090/",
+                "tls_skip_verify": true,
+                "interval": "10s",
+                "timeout": "1s"
+            }
+        ]
+    }
+}

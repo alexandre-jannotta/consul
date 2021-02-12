@@ -105,3 +105,37 @@ services:
       - ./config/server-5:/consul/config:ro
       - ./config/server.sh:/consul/server.sh:ro
     command: /consul/server.sh seclin
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.external-url=http://localhost:9090/prometheus/"
+    ports:
+      - 9090:9090
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    volumes:
+      - /:/host:ro,rslave
+    pid: host
+    command:
+      - --path.rootfs=/host
+      - --web.listen-address=:9100
+
+  traefik:
+    image: traefik:latest
+    volumes:
+      - ./config/traefik.toml:/etc/traefik/traefik.toml
+    ports:
+      - 80:80
+      - 8080:8080
+
+  whoami:
+    image: traefik/whoami:latest
+    command:
+      - "--port=8081"
+    ports:
+      - 8081:8081

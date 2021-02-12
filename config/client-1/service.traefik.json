@@ -1,0 +1,18 @@
+{
+    "service": {
+        "id": "traefik",
+        "name": "traefik",
+        "address": "traefik",
+        "tags": [
+        ],
+        "port": 80,
+        "checks": [
+            {
+                "http": "http://traefik:80/ping",
+                "tls_skip_verify": true,
+                "interval": "10s",
+                "timeout": "1s"
+            }
+        ]
+    }
+}
