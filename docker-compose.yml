@@ -74,6 +74,7 @@ services:
       - ./config/certs:/consul/certs
       - ./config/client-1:/consul/config
       - ./config/client.sh:/consul/client.sh:ro
+      - ./config/watcher.sh:/consul/watcher.sh:ro
     command: /consul/client.sh
 
   client-2:

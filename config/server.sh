@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 
 # generate certificate
 cd /consul/data

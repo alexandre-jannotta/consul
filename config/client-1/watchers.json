@@ -1,0 +1,10 @@
+{
+    "watches": [
+        {
+            "type": "key",
+            "key": "toto",
+            "handler_type": "script",
+            "args": [ "/consul/watcher.sh", "toto" ]
+        }
+    ]
+}

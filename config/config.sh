@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 
 consul acl policy create \
     -http-addr 'http://server-1:8500' \
@@ -7,6 +8,9 @@ consul acl policy create \
   policy = "write"
 }
 service_prefix "" {
+  policy = "write"
+}
+key_prefix "" {
   policy = "write"
 }
 '
