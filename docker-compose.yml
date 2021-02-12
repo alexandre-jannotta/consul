@@ -27,8 +27,8 @@ services:
       - server-1-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-1:/consul/config:ro
-      - ./config/server.sh:/consul/server.sh:ro
-    command: /consul/server.sh paris
+      - ./config/scripts:/consul/scripts:ro
+    command: /consul/scripts/server.sh paris
     ports:
       - 8500:8500 # UI
       - 8600:8600 # DNS
@@ -41,8 +41,8 @@ services:
       - server-2-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-2:/consul/config:ro
-      - ./config/server.sh:/consul/server.sh:ro
-    command: /consul/server.sh paris
+      - ./config/scripts:/consul/scripts:ro
+    command: /consul/scripts/server.sh paris
 
   server-3:
     <<: *template
@@ -52,8 +52,8 @@ services:
       - server-3-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-3:/consul/config:ro
-      - ./config/server.sh:/consul/server.sh:ro
-    command: /consul/server.sh paris
+      - ./config/scripts:/consul/scripts:ro
+    command: /consul/scripts/server.sh paris
 
   server-config:
     <<: *template
@@ -63,8 +63,8 @@ services:
       - server-3
     volumes:
       - server-config-data:/consul/data
-      - ./config/config.sh:/consul/config.sh:ro
-    command: /consul/config.sh
+      - ./config/scripts:/consul/scripts:ro
+    command: /consul/scripts/config.sh
 
   client-1:
     <<: *template
@@ -74,9 +74,8 @@ services:
       - client-1-data:/consul/data
       - ./config/certs:/consul/certs
       - ./config/client-1:/consul/config
-      - ./config/client.sh:/consul/client.sh:ro
-      - ./config/watcher.sh:/consul/watcher.sh:ro
-    command: /consul/client.sh
+      - ./config/scripts:/consul/scripts:ro
+    command: /consul/scripts/client.sh
 
   client-2:
     <<: *template
@@ -86,8 +85,8 @@ services:
       - client-2-data:/consul/data
       - ./config/certs:/consul/certs
       - ./config/client-2:/consul/config
-      - ./config/client.sh:/consul/client.sh:ro
-    command: /consul/client.sh
+      - ./config/scripts:/consul/scripts:ro
+    command: /consul/scripts/client.sh
 
   server-4:
     <<: *template
@@ -97,8 +96,8 @@ services:
       - server-4-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-4:/consul/config:ro
-      - ./config/server.sh:/consul/server.sh:ro
-    command: /consul/server.sh seclin
+      - ./config/scripts:/consul/scripts:ro
+    command: /consul/scripts/server.sh seclin
 
   server-5:
     <<: *template
@@ -108,8 +107,8 @@ services:
       - server-5-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-5:/consul/config:ro
-      - ./config/server.sh:/consul/server.sh:ro
-    command: /consul/server.sh seclin
+      - ./config/scripts:/consul/scripts:ro
+    command: /consul/scripts/server.sh seclin
 
   prometheus:
     image: prom/prometheus:latest

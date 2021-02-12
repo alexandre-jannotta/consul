@@ -4,7 +4,7 @@
             "type": "key",
             "key": "toto",
             "handler_type": "script",
-            "args": [ "/consul/watcher.sh", "toto" ]
+            "args": [ "/consul/scripts/watcher.sh", "toto" ]
         }
     ]
 }
