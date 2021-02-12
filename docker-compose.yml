@@ -30,7 +30,8 @@ services:
       - ./config/server.sh:/consul/server.sh:ro
     command: /consul/server.sh paris
     ports:
-      - 8500:8500
+      - 8500:8500 # UI
+      - 8600:8600 # DNS
 
   server-2:
     <<: *template
