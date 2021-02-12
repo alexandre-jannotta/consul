@@ -2,7 +2,7 @@
     "service": {
         "id": "whoami",
         "name": "whoami",
-        "address": "whoami",
+        "address": "whoami-2",
         "tags": [
             "traefik.enable=true",
             "traefik.http.routers.whoami.rule=PathPrefix(`/whoami`)",
