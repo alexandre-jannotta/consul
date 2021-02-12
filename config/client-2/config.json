@@ -1,6 +1,5 @@
 {
-	"server": true,
-	"datacenter": "paris",
+	"datacenter": "seclin",
 	"node_name": "client-2",
 	"node_meta": {
 		"app": "client-2"
@@ -17,11 +16,10 @@
 	"verify_server_hostname": true,
 	"ca_file": "/consul/certs/consul-agent-ca.pem",
 	"auto_encrypt": {
-		"allow_tls": true
+		"tls": true
 	},
 	"retry_join": [
-		"server-1",
-		"server-2",
-		"server-3"
+		"server-3",
+		"server-4"
 	]
 }

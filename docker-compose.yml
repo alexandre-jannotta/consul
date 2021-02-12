@@ -80,7 +80,7 @@ services:
   client-2:
     <<: *template
     depends_on:
-      - server-config
+      - server-5
     volumes:
       - client-2-data:/consul/data
       - ./config/certs:/consul/certs
@@ -138,9 +138,12 @@ services:
       - 80:80
       - 8080:8080
 
-  whoami:
+  whoami-1:
     image: traefik/whoami:latest
-    command:
-      - "--port=8081"
     ports:
-      - 8081:8081
+      - 8081:80
+
+  whoami-2:
+    image: traefik/whoami:latest
+    ports:
+      - 8082:80

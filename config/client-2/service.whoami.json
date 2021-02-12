@@ -12,7 +12,7 @@
         "port": 80,
         "checks": [
             {
-                "http": "http://whoami-1:80/health",
+                "http": "http://whoami-2:80/health",
                 "tls_skip_verify": true,
                 "interval": "10s",
                 "timeout": "1s"
