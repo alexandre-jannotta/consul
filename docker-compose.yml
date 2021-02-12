@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 
 volumes:
   server-1-data:
@@ -9,10 +9,18 @@ volumes:
   client-1-data:
   client-2-data:
 
+x-template: &template
+  image: consul:latest
+  healthcheck:
+    test: [ "CMD", "curl", "http://localhost:8500" ]
+    interval: 5s
+    timeout: 10s
+    retries: 5
+
 services:
 
   server-1:
-    image: consul:latest
+    <<: *template
     volumes:
       - server-1-data:/consul/data
       - ./config/certs:/consul/certs:ro
@@ -21,58 +29,43 @@ services:
     command: /consul/server.sh paris
     ports:
       - 8500:8500
-    healthcheck:
-      test: [ "CMD", "curl", "http://localhost:8500" ]
-      interval: 5s
-      timeout: 10s
-      retries: 5
 
   server-2:
+    <<: *template
     depends_on:
       - server-1
-    image: consul:latest
     volumes:
       - server-2-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-2:/consul/config:ro
       - ./config/server.sh:/consul/server.sh:ro
     command: /consul/server.sh paris
-    healthcheck:
-      test: [ "CMD", "curl", "http://localhost:8500" ]
-      interval: 5s
-      timeout: 10s
-      retries: 5
 
   server-3:
+    <<: *template
     depends_on:
       - server-2
-    image: consul:latest
     volumes:
       - server-3-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-3:/consul/config:ro
       - ./config/server.sh:/consul/server.sh:ro
     command: /consul/server.sh paris
-    healthcheck:
-      test: [ "CMD", "curl", "http://localhost:8500" ]
-      interval: 5s
-      timeout: 10s
-      retries: 5
 
   server-config:
+    <<: *template
     depends_on:
       - server-1
       - server-2
       - server-3
-    image: consul:latest
     volumes:
       - ./config/config.sh:/consul/config.sh:ro
     command: /consul/config.sh
 
   client-1:
+    <<: *template
     depends_on:
       - server-config
-    image: consul:latest
     volumes:
       - client-1-data:/consul/data
       - ./config/certs:/consul/certs
@@ -81,9 +74,9 @@ services:
     command: /consul/client.sh
 
   client-2:
+    <<: *template
     depends_on:
       - server-config
-    image: consul:latest
     volumes:
       - client-2-data:/consul/data
       - ./config/certs:/consul/certs
@@ -92,33 +85,23 @@ services:
     command: /consul/client.sh
 
   server-4:
+    <<: *template
     depends_on:
       - server-3
-    image: consul:latest
     volumes:
       - server-4-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-4:/consul/config:ro
       - ./config/server.sh:/consul/server.sh:ro
     command: /consul/server.sh seclin
-    healthcheck:
-      test: [ "CMD", "curl", "http://localhost:8500" ]
-      interval: 5s
-      timeout: 10s
-      retries: 5
 
   server-5:
+    <<: *template
     depends_on:
       - server-4
-    image: consul:latest
     volumes:
       - server-5-data:/consul/data
       - ./config/certs:/consul/certs:ro
       - ./config/server-5:/consul/config:ro
       - ./config/server.sh:/consul/server.sh:ro
     command: /consul/server.sh seclin
-    healthcheck:
-      test: [ "CMD", "curl", "http://localhost:8500" ]
-      interval: 5s
-      timeout: 10s
-      retries: 5
