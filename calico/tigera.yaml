@@ -1,0 +1,15 @@
+--2021-02-14 22:54:42--  https://docs.projectcalico.org/manifests/tigera-operator.yaml
+Resolving docs.projectcalico.org (docs.projectcalico.org)... 162.243.166.170, 50.18.217.105, 2600:1f18:2489:8200:6970:83b4:a536:c02b, ...
+Connecting to docs.projectcalico.org (docs.projectcalico.org)|162.243.166.170|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 241120 (235K) [application/x-yaml]
+Saving to: ‘tigera-operator.yaml’
+
+     0K .......... .......... .......... .......... .......... 21%  315K 1s
+    50K .......... .......... .......... .......... .......... 42%  633K 0s
+   100K .......... .......... .......... .......... .......... 63% 29.7M 0s
+   150K .......... .......... .......... .......... .......... 84%  633K 0s
+   200K .......... .......... .......... .....                100%  453K=0.4s
+
+2021-02-14 22:54:43 (594 KB/s) - ‘tigera-operator.yaml’ saved [241120/241120]
+

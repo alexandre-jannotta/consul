@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: paris-consul
+  name: init
+  labels:
+    app: init
+spec:
+  volumes:
+    - name: storage
+    - name: config-map
+      configMap:
+        name: config
+    - name: scripts
+      configMap:
+        name: scripts
+        defaultMode: 0755
+    - name: certs
+      configMap:
+        name: certs
+  restartPolicy: Never
+  containers:
+    - name: consul
+      image: consul:latest
+      command: [ /consul/scripts/config.sh ]
+      volumeMounts:
+        - { name: storage, mountPath: /consul/data }
+        - { name: certs, mountPath: /consul/certs }
+        - { name: scripts, mountPath: /consul/scripts }
+---

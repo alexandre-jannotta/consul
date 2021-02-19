@@ -1,0 +1,60 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: paris-app
+  name: config
+spec:
+  volumeName: config-paris-app
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Mi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: paris-app
+  name: config
+data:
+  config.json: |-
+    {
+      "datacenter": "paris",
+      "bind_addr": "{{ GetInterfaceIP \"eth0\" }}",
+      "acl": {
+        "tokens": {
+          "default": "6a414ac2-850f-7921-2ba2-141ee456f966"
+        }
+      },
+      "encrypt": "lL0HdEPQXKEjIMWsm4ooSzxLJRSMRIOu2FXf5hUtJwM=",
+      "verify_incoming": false,
+      "verify_outgoing": true,
+      "verify_server_hostname": true,
+      "ca_file": "/consul/certs/consul-agent-ca.pem",
+      "auto_encrypt": {
+        "tls": true
+      },
+      "retry_join": [
+        "server-0.server.paris-consul.svc",
+        "server-1.server.paris-consul.svc",
+        "server-2.server.paris-consul.svc"
+      ]
+    }
+  service.whoami.json: |-
+    {
+      "service": {
+        "id": "whoami",
+        "name": "whoami",
+        "port": 80,
+        "checks": [
+          {
+            "http": "http://localhost:80/health",
+            "tls_skip_verify": true,
+            "interval": "10s",
+            "timeout": "1s"
+          }
+        ]
+      }
+    }
+---

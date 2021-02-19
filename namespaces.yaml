@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: paris-consul
+  labels:
+    name: paris-consul
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: paris-app
+  labels:
+    name: paris-app
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: seclin-consul
+  labels:
+    name: seclin-consul
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: seclin-app
+  labels:
+    name: seclin-app
+---

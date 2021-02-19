@@ -25,9 +25,9 @@ services:
     <<: *template
     volumes:
       - server-1-data:/consul/data
-      - ./config/certs:/consul/certs:ro
-      - ./config/server-1:/consul/config:ro
-      - ./config/scripts:/consul/scripts:ro
+      - ./config/certs:/consul/certs
+      - ./config/server-1:/consul/config
+      - ./config/scripts:/consul/scripts
     command: /consul/scripts/server.sh paris
     ports:
       - 8500:8500 # UI
@@ -39,9 +39,9 @@ services:
       - server-1
     volumes:
       - server-2-data:/consul/data
-      - ./config/certs:/consul/certs:ro
-      - ./config/server-2:/consul/config:ro
-      - ./config/scripts:/consul/scripts:ro
+      - ./config/certs:/consul/certs
+      - ./config/server-2:/consul/config
+      - ./config/scripts:/consul/scripts
     command: /consul/scripts/server.sh paris
 
   server-3:
@@ -50,9 +50,9 @@ services:
       - server-2
     volumes:
       - server-3-data:/consul/data
-      - ./config/certs:/consul/certs:ro
-      - ./config/server-3:/consul/config:ro
-      - ./config/scripts:/consul/scripts:ro
+      - ./config/certs:/consul/certs
+      - ./config/server-3:/consul/config
+      - ./config/scripts:/consul/scripts
     command: /consul/scripts/server.sh paris
 
   server-config:
@@ -63,7 +63,7 @@ services:
       - server-3
     volumes:
       - server-config-data:/consul/data
-      - ./config/scripts:/consul/scripts:ro
+      - ./config/scripts:/consul/scripts
     command: /consul/scripts/config.sh
 
   client-1:
@@ -74,7 +74,7 @@ services:
       - client-1-data:/consul/data
       - ./config/certs:/consul/certs
       - ./config/client-1:/consul/config
-      - ./config/scripts:/consul/scripts:ro
+      - ./config/scripts:/consul/scripts
     command: /consul/scripts/client.sh
 
   client-2:
@@ -85,7 +85,7 @@ services:
       - client-2-data:/consul/data
       - ./config/certs:/consul/certs
       - ./config/client-2:/consul/config
-      - ./config/scripts:/consul/scripts:ro
+      - ./config/scripts:/consul/scripts
     command: /consul/scripts/client.sh
 
   server-4:
@@ -94,9 +94,9 @@ services:
       - server-3
     volumes:
       - server-4-data:/consul/data
-      - ./config/certs:/consul/certs:ro
-      - ./config/server-4:/consul/config:ro
-      - ./config/scripts:/consul/scripts:ro
+      - ./config/certs:/consul/certs
+      - ./config/server-4:/consul/config
+      - ./config/scripts:/consul/scripts
     command: /consul/scripts/server.sh seclin
 
   server-5:
@@ -105,15 +105,15 @@ services:
       - server-4
     volumes:
       - server-5-data:/consul/data
-      - ./config/certs:/consul/certs:ro
-      - ./config/server-5:/consul/config:ro
-      - ./config/scripts:/consul/scripts:ro
+      - ./config/certs:/consul/certs
+      - ./config/server-5:/consul/config
+      - ./config/scripts:/consul/scripts
     command: /consul/scripts/server.sh seclin
 
   prometheus:
     image: prom/prometheus:latest
     volumes:
-      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
@@ -124,7 +124,7 @@ services:
   node-exporter:
     image: prom/node-exporter:latest
     volumes:
-      - /:/host:ro,rslave
+      - /:/host,rslave
     pid: host
     command:
       - --path.rootfs=/host
@@ -133,7 +133,7 @@ services:
   traefik:
     image: traefik:latest
     volumes:
-      - ./config/traefik.toml:/etc/traefik/traefik.toml:ro
+      - ./config/traefik.toml:/etc/traefik/traefik.toml
     ports:
       - 80:80
       - 8080:8080

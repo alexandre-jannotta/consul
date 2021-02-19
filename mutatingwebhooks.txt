@@ -1,0 +1,142 @@
+apiVersion: v1
+items:
+- apiVersion: admissionregistration.k8s.io/v1
+  kind: MutatingWebhookConfiguration
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"admissionregistration.k8s.io/v1beta1","kind":"MutatingWebhookConfiguration","metadata":{"annotations":{},"name":"pod-identity-webhook"},"webhooks":[{"clientConfig":{"caBundle":"LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1ESXhPVEV4TVRRME1Gb1hEVE14TURJeE56RXhNVFEwTUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTURzCnJ4RVc3cXh4ZmdlTlM1ckpVV2l0SVI3RmxLaXZxYzM2SkVJYWJaTnVDaVdBRG9YMHoxM2VqNUdyekp2Ui9PRngKZEsrMnVNeldYSDZabG9XMm1vRm01SGVGZ1RYNDNNQ3F4UDJMYkF6aVBFazNRVmJ2NDZDdVUrTW1BcC9XdFFwRQphM1MzcEo3eEVnYUJteGtOOWdLcVphb0pHeEkzTHJUWHpDQnRPRWZFWUZIUm12RHBXcWNRSWVXYWxXQ296MC9CCjV5S2ZjclNxcXkyVWRyclhiQW5BWmdBYWJOblBsZlZwSUh5YnVkTXJJdkFhYjMvN05MbG1lRHVONTZKOWZOa28KRDk3R2oweEF1SkpETUdKM2ttRndPZ2hSbW1GVjE5aWpUNmFMRmowOVpYMWJBRXh3SXhmWUs0WmIyazlFU1p0NQp1UUsxZTZ5ajZaOEpFYVZ4NTJjQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFIZjZjczMweE1rN2hjV015U1psSUkxODBRT0UKTjI2a1pqUUlLSENxSERpa3FOZWl2RnJWdWlXZXM1dThHbXd2NEVERyswZi94QmdPZU16WW56bWgzZ1dXRGpkegpFNjlIeUdIbVZ2ckI1MVhoMlZTa0E2SGhzMFVFSWJqanRlN09jdmhUSk1PbmZTSjlxM3c2dko5bFNrS1hBeE5vCmJwd1JacVRheG1xTGRqY0REOE9rWXI2TGxUa0xjMU9lMUU5MldKS0FkM0J1TTZGUHhvTjF1YnNJODMwYnAySmYKQWZnOVFScFhaQXk3NXFCQTZyTTVUUFIzTXBCY1RVWERmQjJwRHBHeXl5b3h6NENKdjlyUStET1VsRDNEaUY2YQpvb3pqVzlzNGc0eWJzNUFpYnU4aFFhdDRpM0lMU3RxRGxKVEdmVk92YWVYZWNzRThob0RIQW5Id1RyQT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=","url":"https://127.0.0.1:23443/mutate"},"name":"iam-for-pods.amazonaws.com","reinvocationPolicy":"IfNeeded","rules":[{"apiGroups":[""],"apiVersions":["v1"],"operations":["CREATE"],"resources":["pods"]}]}]}
+    creationTimestamp: "2021-02-19T11:16:28Z"
+    generation: 1
+    managedFields:
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+        f:webhooks:
+          .: {}
+          k:{"name":"iam-for-pods.amazonaws.com"}:
+            .: {}
+            f:admissionReviewVersions: {}
+            f:clientConfig:
+              .: {}
+              f:caBundle: {}
+              f:url: {}
+            f:failurePolicy: {}
+            f:matchPolicy: {}
+            f:name: {}
+            f:namespaceSelector: {}
+            f:objectSelector: {}
+            f:reinvocationPolicy: {}
+            f:rules: {}
+            f:sideEffects: {}
+            f:timeoutSeconds: {}
+      manager: kubectl
+      operation: Update
+      time: "2021-02-19T11:16:28Z"
+    name: pod-identity-webhook
+    resourceVersion: "181"
+    selfLink: /apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/pod-identity-webhook
+    uid: b8c012d5-796f-480f-af1b-e384ce6c274c
+  webhooks:
+  - admissionReviewVersions:
+    - v1beta1
+    clientConfig:
+      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1ESXhPVEV4TVRRME1Gb1hEVE14TURJeE56RXhNVFEwTUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTURzCnJ4RVc3cXh4ZmdlTlM1ckpVV2l0SVI3RmxLaXZxYzM2SkVJYWJaTnVDaVdBRG9YMHoxM2VqNUdyekp2Ui9PRngKZEsrMnVNeldYSDZabG9XMm1vRm01SGVGZ1RYNDNNQ3F4UDJMYkF6aVBFazNRVmJ2NDZDdVUrTW1BcC9XdFFwRQphM1MzcEo3eEVnYUJteGtOOWdLcVphb0pHeEkzTHJUWHpDQnRPRWZFWUZIUm12RHBXcWNRSWVXYWxXQ296MC9CCjV5S2ZjclNxcXkyVWRyclhiQW5BWmdBYWJOblBsZlZwSUh5YnVkTXJJdkFhYjMvN05MbG1lRHVONTZKOWZOa28KRDk3R2oweEF1SkpETUdKM2ttRndPZ2hSbW1GVjE5aWpUNmFMRmowOVpYMWJBRXh3SXhmWUs0WmIyazlFU1p0NQp1UUsxZTZ5ajZaOEpFYVZ4NTJjQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFIZjZjczMweE1rN2hjV015U1psSUkxODBRT0UKTjI2a1pqUUlLSENxSERpa3FOZWl2RnJWdWlXZXM1dThHbXd2NEVERyswZi94QmdPZU16WW56bWgzZ1dXRGpkegpFNjlIeUdIbVZ2ckI1MVhoMlZTa0E2SGhzMFVFSWJqanRlN09jdmhUSk1PbmZTSjlxM3c2dko5bFNrS1hBeE5vCmJwd1JacVRheG1xTGRqY0REOE9rWXI2TGxUa0xjMU9lMUU5MldKS0FkM0J1TTZGUHhvTjF1YnNJODMwYnAySmYKQWZnOVFScFhaQXk3NXFCQTZyTTVUUFIzTXBCY1RVWERmQjJwRHBHeXl5b3h6NENKdjlyUStET1VsRDNEaUY2YQpvb3pqVzlzNGc0eWJzNUFpYnU4aFFhdDRpM0lMU3RxRGxKVEdmVk92YWVYZWNzRThob0RIQW5Id1RyQT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+      url: https://127.0.0.1:23443/mutate
+    failurePolicy: Ignore
+    matchPolicy: Exact
+    name: iam-for-pods.amazonaws.com
+    namespaceSelector: {}
+    objectSelector: {}
+    reinvocationPolicy: IfNeeded
+    rules:
+    - apiGroups:
+      - ""
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      resources:
+      - pods
+      scope: '*'
+    sideEffects: Unknown
+    timeoutSeconds: 30
+- apiVersion: admissionregistration.k8s.io/v1
+  kind: MutatingWebhookConfiguration
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"admissionregistration.k8s.io/v1beta1","kind":"MutatingWebhookConfiguration","metadata":{"annotations":{},"name":"vpc-resource-mutating-webhook"},"webhooks":[{"clientConfig":{"caBundle":"LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1ESXhPVEV4TVRRME1Gb1hEVE14TURJeE56RXhNVFEwTUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTURzCnJ4RVc3cXh4ZmdlTlM1ckpVV2l0SVI3RmxLaXZxYzM2SkVJYWJaTnVDaVdBRG9YMHoxM2VqNUdyekp2Ui9PRngKZEsrMnVNeldYSDZabG9XMm1vRm01SGVGZ1RYNDNNQ3F4UDJMYkF6aVBFazNRVmJ2NDZDdVUrTW1BcC9XdFFwRQphM1MzcEo3eEVnYUJteGtOOWdLcVphb0pHeEkzTHJUWHpDQnRPRWZFWUZIUm12RHBXcWNRSWVXYWxXQ296MC9CCjV5S2ZjclNxcXkyVWRyclhiQW5BWmdBYWJOblBsZlZwSUh5YnVkTXJJdkFhYjMvN05MbG1lRHVONTZKOWZOa28KRDk3R2oweEF1SkpETUdKM2ttRndPZ2hSbW1GVjE5aWpUNmFMRmowOVpYMWJBRXh3SXhmWUs0WmIyazlFU1p0NQp1UUsxZTZ5ajZaOEpFYVZ4NTJjQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFIZjZjczMweE1rN2hjV015U1psSUkxODBRT0UKTjI2a1pqUUlLSENxSERpa3FOZWl2RnJWdWlXZXM1dThHbXd2NEVERyswZi94QmdPZU16WW56bWgzZ1dXRGpkegpFNjlIeUdIbVZ2ckI1MVhoMlZTa0E2SGhzMFVFSWJqanRlN09jdmhUSk1PbmZTSjlxM3c2dko5bFNrS1hBeE5vCmJwd1JacVRheG1xTGRqY0REOE9rWXI2TGxUa0xjMU9lMUU5MldKS0FkM0J1TTZGUHhvTjF1YnNJODMwYnAySmYKQWZnOVFScFhaQXk3NXFCQTZyTTVUUFIzTXBCY1RVWERmQjJwRHBHeXl5b3h6NENKdjlyUStET1VsRDNEaUY2YQpvb3pqVzlzNGc0eWJzNUFpYnU4aFFhdDRpM0lMU3RxRGxKVEdmVk92YWVYZWNzRThob0RIQW5Id1RyQT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=","url":"https://127.0.0.1:9443/mutate-v1-pod"},"failurePolicy":"Ignore","name":"mpod.vpc.k8s.aws","reinvocationPolicy":"IfNeeded","rules":[{"apiGroups":[""],"apiVersions":["v1"],"operations":["CREATE"],"resources":["pods"]}],"sideEffects":"None","timeoutSeconds":5}]}
+    creationTimestamp: "2021-02-19T11:16:30Z"
+    generation: 1
+    managedFields:
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:webhooks:
+          .: {}
+          k:{"name":"mpod.vpc.k8s.aws"}:
+            .: {}
+            f:admissionReviewVersions: {}
+            f:clientConfig:
+              .: {}
+              f:caBundle: {}
+              f:url: {}
+            f:failurePolicy: {}
+            f:matchPolicy: {}
+            f:name: {}
+            f:namespaceSelector: {}
+            f:objectSelector: {}
+            f:reinvocationPolicy: {}
+            f:rules: {}
+            f:sideEffects: {}
+            f:timeoutSeconds: {}
+      manager: kubectl
+      operation: Update
+      time: "2021-02-19T11:55:32Z"
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+      manager: kubectl-client-side-apply
+      operation: Update
+      time: "2021-02-19T12:11:19Z"
+    name: vpc-resource-mutating-webhook
+    resourceVersion: "8963"
+    selfLink: /apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/vpc-resource-mutating-webhook
+    uid: 7a699067-8287-498d-b6c1-575f49a63aeb
+  webhooks:
+  - admissionReviewVersions:
+    - v1beta1
+    clientConfig:
+      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1ESXhPVEV4TVRRME1Gb1hEVE14TURJeE56RXhNVFEwTUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTURzCnJ4RVc3cXh4ZmdlTlM1ckpVV2l0SVI3RmxLaXZxYzM2SkVJYWJaTnVDaVdBRG9YMHoxM2VqNUdyekp2Ui9PRngKZEsrMnVNeldYSDZabG9XMm1vRm01SGVGZ1RYNDNNQ3F4UDJMYkF6aVBFazNRVmJ2NDZDdVUrTW1BcC9XdFFwRQphM1MzcEo3eEVnYUJteGtOOWdLcVphb0pHeEkzTHJUWHpDQnRPRWZFWUZIUm12RHBXcWNRSWVXYWxXQ296MC9CCjV5S2ZjclNxcXkyVWRyclhiQW5BWmdBYWJOblBsZlZwSUh5YnVkTXJJdkFhYjMvN05MbG1lRHVONTZKOWZOa28KRDk3R2oweEF1SkpETUdKM2ttRndPZ2hSbW1GVjE5aWpUNmFMRmowOVpYMWJBRXh3SXhmWUs0WmIyazlFU1p0NQp1UUsxZTZ5ajZaOEpFYVZ4NTJjQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFIZjZjczMweE1rN2hjV015U1psSUkxODBRT0UKTjI2a1pqUUlLSENxSERpa3FOZWl2RnJWdWlXZXM1dThHbXd2NEVERyswZi94QmdPZU16WW56bWgzZ1dXRGpkegpFNjlIeUdIbVZ2ckI1MVhoMlZTa0E2SGhzMFVFSWJqanRlN09jdmhUSk1PbmZTSjlxM3c2dko5bFNrS1hBeE5vCmJwd1JacVRheG1xTGRqY0REOE9rWXI2TGxUa0xjMU9lMUU5MldKS0FkM0J1TTZGUHhvTjF1YnNJODMwYnAySmYKQWZnOVFScFhaQXk3NXFCQTZyTTVUUFIzTXBCY1RVWERmQjJwRHBHeXl5b3h6NENKdjlyUStET1VsRDNEaUY2YQpvb3pqVzlzNGc0eWJzNUFpYnU4aFFhdDRpM0lMU3RxRGxKVEdmVk92YWVYZWNzRThob0RIQW5Id1RyQT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+      url: https://127.0.0.1:9443/mutate-v1-pod
+    failurePolicy: Ignore
+    matchPolicy: Exact
+    name: mpod.vpc.k8s.aws
+    namespaceSelector: {}
+    objectSelector: {}
+    reinvocationPolicy: IfNeeded
+    rules:
+    - apiGroups:
+      - ""
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      resources:
+      - pods
+      scope: '*'
+    sideEffects: None
+    timeoutSeconds: 5
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

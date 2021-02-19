@@ -1,0 +1,78 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: network
+  namespace: paris-app
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress: []
+  egress: []
+---
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   namespace: paris-consul
+#   name: network
+# spec:
+#   podSelector:
+#     matchLabels:
+#       app: server
+#   policyTypes:
+#     - Ingress
+#   ingress:
+#     - from:
+#         - namespaceSelector: { matchLabels: { name: paris-app }}
+#       ports:
+#         - port: 8300
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: network
+#   namespace: paris-app
+# spec:
+#   podSelector: {}
+#   policyTypes:
+#     - Ingress
+#   ingress:
+#     - from:
+#         - namespaceSelector: { matchLabels: { name: paris-consul }}
+#       ports:
+#         - port: 8300
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   namespace: seclin-consul
+#   name: network
+# spec:
+#   podSelector:
+#     matchLabels:
+#       app: server
+#   policyTypes:
+#     - Ingress
+#   ingress:
+#     - from:
+#         - namespaceSelector: { matchLabels: { name: seclin-app }}
+#       ports:
+#         - port: 8300
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: network
+#   namespace: seclin-app
+# spec:
+#   podSelector: {}
+#   policyTypes:
+#     - Ingress
+#   ingress:
+#     - from:
+#         - namespaceSelector: { matchLabels: { name: seclin-consul }}
+#       ports:
+#         - port: 8300
+# ---

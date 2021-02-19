@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: config-paris-consul
+spec:
+  storageClassName: hostpath
+  hostPath:
+    path: /run/desktop/mnt/host/wsl/docker-desktop-bind-mounts/Ubuntu/8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1/home/wlmitch/dev/git/alexandre-jannotta/consul/config
+  capacity:
+    storage: 50Mi
+  accessModes:
+    - ReadWriteMany
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: config-paris-app
+spec:
+  storageClassName: hostpath
+  hostPath:
+    path: /run/desktop/mnt/host/wsl/docker-desktop-bind-mounts/Ubuntu/8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1/home/wlmitch/dev/git/alexandre-jannotta/consul/config
+  capacity:
+    storage: 50Mi
+  accessModes:
+    - ReadWriteMany
+---

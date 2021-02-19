@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: paris-consul
+  name: server
+  labels:
+    app: server
+spec:
+  serviceName: server
+  podManagementPolicy: Parallel
+  replicas: 3
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: storage
+        - name: config-map
+          configMap:
+            name: config
+        - name: scripts
+          configMap:
+            name: scripts
+            defaultMode: 0755
+        - name: certs
+          configMap:
+            name: certs
+        # - name: consul-ca-cert
+        #   secret:
+        #     secretName: cert
+        #     items:
+        #     - key: tls.crt
+        #       path: tls.crt
+        # - name: consul-server-cert
+        #   secret:
+        #     secretName: {{ template "consul.fullname" . }}-server-cert
+      containers:
+        - name: consul
+          image: consul:latest
+          command: [ /consul/scripts/server.sh, paris ] 
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          #   - name: GOSSIP_KEY
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: {{ .Values.global.gossipEncryption.secretName }}
+          #         key: {{ .Values.global.gossipEncryption.secretKey }}
+          #   - name: CONSUL_HTTP_ADDR
+          #     value: https://localhost:8501
+          #   - name: CONSUL_CACERT
+          #     value: /consul/tls/ca/tls.crt
+          #   - name: ACL_REPLICATION_TOKEN
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: {{ .Values.global.acls.replicationToken.secretName | quote }}
+          #         key: {{ .Values.global.acls.replicationToken.secretKey | quote }}
+          # command:
+          #   - "/bin/sh"
+          #   - "-ec"
+          #   - |
+          #     CONSUL_FULLNAME="{{template "consul.fullname" . }}"
+          #     exec /bin/consul agent \
+          #       -bind=0.0.0.0 \
+          #       -client=0.0.0.0 \
+          #       -encrypt="${GOSSIP_KEY}" \
+          #       -hcl="acl { tokens { agent = \"${ACL_REPLICATION_TOKEN}\", replication = \"${ACL_REPLICATION_TOKEN}\" } }" \
+          volumeMounts:
+            - { name: storage, mountPath: /consul/data }
+            - { name: config-map, mountPath: /consul/config }
+            - { name: certs, mountPath: /consul/certs }
+            - { name: scripts, mountPath: /consul/scripts }
+          ports:
+            - name: http
+              containerPort: 8500
+            - name: https
+              containerPort: 8501
+            - name: serflan-tcp
+              containerPort: 8301
+              protocol: TCP
+            - name: serflan-udp
+              containerPort: 8301
+              protocol: TCP
+            - name: serfwan
+              containerPort: 8302
+            - name: server
+              containerPort: 8300
+            - name: dns-tcp
+              containerPort: 8600
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 8600
+              protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: paris-consul
+  name: ui
+spec:
+  type: LoadBalancer
+  selector:
+    app: server
+  ports:
+    - port: 8500
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: paris-consul
+  name: server
+spec:
+  clusterIP: None
+  publishNotReadyAddresses: true
+  selector:
+    app: server
+  ports:
+    - { name: http, port: 8500, targetPort: http }
+    - { name: https, port: 8501, targetPort: https }
+    - { name: serflan-tcp, port: 8301, targetPort: serflan-tcp, protocol: TCP }
+    - { name: serflan-udp, port: 8301, targetPort: serflan-udp, protocol: UDP }
+    - { name: serflwan, port: 8302, targetPort: serfwan }
+    - { name: server, port: 8300, targetPort: server }
+    - { name: dns-tcp, port: 8600, targetPort: dns-tcp, protocol: TCP }
+    - { name: dns-udp, port: 8600, targetPort: dns-udp, protocol: UDP }
+---
