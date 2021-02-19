@@ -32,6 +32,7 @@ services:
     ports:
       - 8500:8500 # UI
       - 8600:8600 # DNS
+      - 8600:8600/udp # DNS
 
   server-2:
     <<: *template
