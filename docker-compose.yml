@@ -31,7 +31,6 @@ services:
     command: /consul/scripts/server.sh paris
     ports:
       - 8500:8500 # UI
-      - 8600:8600 # DNS
       - 8600:8600/udp # DNS
 
   server-2:
@@ -110,6 +109,9 @@ services:
       - ./config/server-5:/consul/config:ro
       - ./config/scripts:/consul/scripts:ro
     command: /consul/scripts/server.sh seclin
+    ports:
+      - 8601:8600
+      - 8601:8600/udp # DNS
 
   prometheus:
     image: prom/prometheus:latest

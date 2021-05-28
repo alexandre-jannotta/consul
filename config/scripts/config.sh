@@ -36,5 +36,7 @@ service_prefix "" {
 '
 
 consul acl token update \
+    -http-addr 'http://server-1:8500' \
+    -token 'd8a5fa60-cc67-499b-d363-94128d44b2d1' \
     -id 00000000-0000-0000-0000-000000000002 \
     -policy-name 'dns'

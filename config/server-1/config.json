@@ -6,7 +6,8 @@
 	"bootstrap_expect": 3,
 	"bind_addr": "{{ GetInterfaceIP \"eth0\" }}",
 	"telemetry": {
-		"disable_compat_1.9": true
+		"disable_compat_1.9": true,
+		"prometheus_retention_time": "60s"
 	},
 	"acl": {
 		"enabled": true,
@@ -15,8 +16,8 @@
 		"enable_token_persistence": true,
 		"enable_token_replication": true,
 		"tokens": {
-			"master": "d8a5fa60-cc67-499b-d363-94128d44b2d1",
-			"default": "d8a5fa60-cc67-499b-d363-94128d44b2d1"
+			"agent": "6a414ac2-850f-7921-2ba2-141ee456f966",
+			"master": "d8a5fa60-cc67-499b-d363-94128d44b2d1"
 		}
 	},
 	"encrypt": "lL0HdEPQXKEjIMWsm4ooSzxLJRSMRIOu2FXf5hUtJwM=",

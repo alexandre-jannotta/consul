@@ -34,6 +34,7 @@
 		"server-4",
 		"server-5"
 	],
+	"client_addr": "0.0.0.0",
 	"retry_join_wan": [
 		"server-1",
 		"server-2",
